@@ -26,6 +26,27 @@ Demo Controls:
 - Left-Click to drawl a tile
 - Right-Click to remove a tile
 
+## Usage
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.github.unenergizer.javaautotile</groupId>
+        <artifactId>autotile</artifactId>
+        <version>${version}</version>
+    </dependency>
+</dependencies>
+```
+
 ## License
 
 This project is licenced under the [Apache 2.0] license.
