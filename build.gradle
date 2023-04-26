@@ -16,6 +16,8 @@ buildscript {
 }
 
 allprojects {
+    group = 'com.github.unenergizer'
+    version = "32.04.25"
     apply plugin: 'eclipse'
     apply plugin: 'idea'
 }
@@ -30,8 +32,9 @@ configure(subprojects) {
 }
 
 subprojects {
+    apply plugin: 'maven-publish'
     version = '1.0.0'
-    ext.appName = 'libGDX-BitMasking-Auto-Tile'
+    ext.appName = 'JavaAutoTile'
     repositories {
         mavenCentral()
         maven { url 'https://s01.oss.sonatype.org' }
@@ -43,4 +46,4 @@ subprojects {
     }
 }
 
-eclipse.project.name = 'libGDX-BitMasking-Auto-Tile' + '-parent'
+eclipse.project.name = 'JavaAutoTile' + '-parent'
