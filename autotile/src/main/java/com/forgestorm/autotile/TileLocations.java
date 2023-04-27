@@ -36,7 +36,8 @@ enum TileLocations {
         return x + tileX;
     }
 
-    public int getY(int tileY) {
-        return y + tileY;
+    public int getY(int tileY, boolean yUp) {
+        int newY = yUp ? -y : y;
+        return newY + tileY;
     }
 }

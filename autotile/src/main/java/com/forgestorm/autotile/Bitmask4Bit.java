@@ -39,10 +39,10 @@ class Bitmask4Bit implements TileBitmasking {
     @Override
     public int calculateBitmask(String strippedTileName, int x, int y, boolean populateList, List<TileLocations> locationUpdateList) {
         // Directional check
-        boolean northTile = autoTiler.compareTile(strippedTileName, TileLocations.NORTH.getX(x), TileLocations.NORTH.getY(y));
-        boolean westTile = autoTiler.compareTile(strippedTileName, TileLocations.WEST.getX(x), TileLocations.WEST.getY(y));
-        boolean eastTile = autoTiler.compareTile(strippedTileName, TileLocations.EAST.getX(x), TileLocations.EAST.getY(y));
-        boolean southTile = autoTiler.compareTile(strippedTileName, TileLocations.SOUTH.getX(x), TileLocations.SOUTH.getY(y));
+        boolean northTile = autoTiler.compareTile(strippedTileName, TileLocations.NORTH.getX(x), TileLocations.NORTH.getY(y, autoTiler.isYUp()));
+        boolean westTile = autoTiler.compareTile(strippedTileName, TileLocations.WEST.getX(x), TileLocations.WEST.getY(y, autoTiler.isYUp()));
+        boolean eastTile = autoTiler.compareTile(strippedTileName, TileLocations.EAST.getX(x), TileLocations.EAST.getY(y, autoTiler.isYUp()));
+        boolean southTile = autoTiler.compareTile(strippedTileName, TileLocations.SOUTH.getX(x), TileLocations.SOUTH.getY(y, autoTiler.isYUp()));
 
         // If true, these tile locations will need to be updated
         if (northTile && populateList) locationUpdateList.add(TileLocations.NORTH);

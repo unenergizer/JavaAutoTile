@@ -39,14 +39,14 @@ class Bitmask8Bit implements TileBitmasking {
     @Override
     public int calculateBitmask(String strippedTileName, int x, int y, boolean populateList, List<TileLocations> locationUpdateList) {
         // Directional Check, including corners, returns Boolean
-        boolean northTile = autoTiler.compareTile(strippedTileName, TileLocations.NORTH.getX(x), TileLocations.NORTH.getY(y));
-        boolean southTile = autoTiler.compareTile(strippedTileName, TileLocations.SOUTH.getX(x), TileLocations.SOUTH.getY(y));
-        boolean westTile = autoTiler.compareTile(strippedTileName, TileLocations.WEST.getX(x), TileLocations.WEST.getY(y));
-        boolean eastTile = autoTiler.compareTile(strippedTileName, TileLocations.EAST.getX(x), TileLocations.EAST.getY(y));
-        boolean northWestTile = autoTiler.compareTile(strippedTileName, TileLocations.NORTH_WEST.getX(x), TileLocations.NORTH_WEST.getY(y)) && westTile && northTile;
-        boolean northEastTile = autoTiler.compareTile(strippedTileName, TileLocations.NORTH_EAST.getX(x), TileLocations.NORTH_EAST.getY(y)) && northTile && eastTile;
-        boolean southWestTile = autoTiler.compareTile(strippedTileName, TileLocations.SOUTH_WEST.getX(x), TileLocations.SOUTH_WEST.getY(y)) && southTile && westTile;
-        boolean southEastTile = autoTiler.compareTile(strippedTileName, TileLocations.SOUTH_EAST.getX(x), TileLocations.SOUTH_EAST.getY(y)) && southTile && eastTile;
+        boolean northTile = autoTiler.compareTile(strippedTileName, TileLocations.NORTH.getX(x), TileLocations.NORTH.getY(y, autoTiler.isYUp()));
+        boolean southTile = autoTiler.compareTile(strippedTileName, TileLocations.SOUTH.getX(x), TileLocations.SOUTH.getY(y, autoTiler.isYUp()));
+        boolean westTile = autoTiler.compareTile(strippedTileName, TileLocations.WEST.getX(x), TileLocations.WEST.getY(y, autoTiler.isYUp()));
+        boolean eastTile = autoTiler.compareTile(strippedTileName, TileLocations.EAST.getX(x), TileLocations.EAST.getY(y, autoTiler.isYUp()));
+        boolean northWestTile = autoTiler.compareTile(strippedTileName, TileLocations.NORTH_WEST.getX(x), TileLocations.NORTH_WEST.getY(y, autoTiler.isYUp())) && westTile && northTile;
+        boolean northEastTile = autoTiler.compareTile(strippedTileName, TileLocations.NORTH_EAST.getX(x), TileLocations.NORTH_EAST.getY(y, autoTiler.isYUp())) && northTile && eastTile;
+        boolean southWestTile = autoTiler.compareTile(strippedTileName, TileLocations.SOUTH_WEST.getX(x), TileLocations.SOUTH_WEST.getY(y, autoTiler.isYUp())) && southTile && westTile;
+        boolean southEastTile = autoTiler.compareTile(strippedTileName, TileLocations.SOUTH_EAST.getX(x), TileLocations.SOUTH_EAST.getY(y, autoTiler.isYUp())) && southTile && eastTile;
 
         // If true, these tile locations will need to be updated
         if (northTile && populateList) locationUpdateList.add(TileLocations.NORTH);

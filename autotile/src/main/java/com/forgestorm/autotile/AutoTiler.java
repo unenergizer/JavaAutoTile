@@ -63,6 +63,15 @@ public class AutoTiler {
     @Setter
     private boolean fixNeighborTiles = true;
 
+    /**
+     * Determines the coordinate system orientation for the auto-tiling library.
+     * If set to true, the library will use a Y-up coordinate system, which is compatible with libGDX.
+     * If set to false (default), the library will use a Y-down coordinate system.
+     */
+    @Getter
+    @Setter
+    private boolean yUp = false;
+
     public AutoTiler(TileGetterSetter tileGetterSetter) {
         this.tileGetterSetter = tileGetterSetter;
         this.bitmask4Bit = new Bitmask4Bit(this);
@@ -139,7 +148,7 @@ public class AutoTiler {
         // Now loop through and find tiles that need to be fixed
         for (TileLocations tileLocation : TileLocations.values()) {
             int locationX = tileLocation.getX(x);
-            int locationY = tileLocation.getY(y);
+            int locationY = tileLocation.getY(y, yUp);
             String neighborsNeighborName = tileGetterSetter.getTile(locationX, locationY);
             if (neighborsNeighborName == null) continue;
             if (strippedNeighborName != null && !(neighborsNeighborName.contains(strippedNeighborName))) continue;
@@ -163,7 +172,7 @@ public class AutoTiler {
         // Update surrounding tiles
         for (TileLocations tileLocation : locationUpdateList) {
             int locationX = tileLocation.getX(x);
-            int locationY = tileLocation.getY(y);
+            int locationY = tileLocation.getY(y, yUp);
 
             // These are tiles that are of the same type
             bitmask = tileBitmasking.calculateBitmask(strippedTileName, locationX, locationY, false, locationUpdateList);
@@ -184,7 +193,7 @@ public class AutoTiler {
         if (!fixNeighborTiles) return;
         for (TileLocations blobLocation : fixNeighborList) {
             int locationX = blobLocation.getX(x);
-            int locationY = blobLocation.getY(y);
+            int locationY = blobLocation.getY(y, yUp);
 
             // These are surrounding tiles that are not the same type
             String neighborName = tileGetterSetter.getTile(locationX, locationY);
