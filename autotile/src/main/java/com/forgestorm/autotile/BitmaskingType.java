@@ -11,7 +11,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-enum BitmaskingType {
+public enum BitmaskingType {
     TYPE_4("BW4=", "0"),
     TYPE_8("BW16=", "90");
 
