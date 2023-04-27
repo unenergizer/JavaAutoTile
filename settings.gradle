@@ -1,11 +1,4 @@
 rootProject.name = 'JavaAutoTile'
-include 'demos'
-include 'demos:core'
-findProject(':demos:core')?.name = 'core'
-include 'demos:html'
-findProject(':demos:html')?.name = 'html'
-include 'demos:lwjgl3'
-findProject(':demos:lwjgl3')?.name = 'lwjgl3'
 include 'autotile'
 findProject(':autotile')?.name = 'autotile'
 
