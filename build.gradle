@@ -11,13 +11,14 @@ buildscript {
     dependencies {
         classpath "io.freefair.gradle:lombok-plugin:6.5.0.3"
         classpath "org.wisepersist:gwt-gradle-plugin:$gwtPluginVersion"
-
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.22.0'
     }
 }
 
+group = 'com.github.unenergizer'
+version = "32.04.25"
+
 allprojects {
-    group = 'com.github.unenergizer'
-    version = "32.04.25"
     apply plugin: 'eclipse'
     apply plugin: 'idea'
 }
@@ -25,15 +26,17 @@ allprojects {
 configure(subprojects) {
     apply plugin: 'java-library'
     apply plugin: 'io.freefair.lombok'
+    apply plugin: 'com.vanniktech.maven.publish'
     sourceCompatibility = 1.8
     compileJava {
         options.incremental = true
     }
+    processResources.duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    processTestResources.duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+
 }
 
 subprojects {
-    apply plugin: 'maven-publish'
-    version = '1.0.0'
     ext.appName = 'JavaAutoTile'
     repositories {
         mavenCentral()
@@ -43,6 +46,18 @@ subprojects {
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
         maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
         maven { url 'https://jitpack.io' }
+    }
+}
+
+// Disable JDK 8's doclint
+// http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            // The -quiet is because of some sort of weird JDK JavaCompiler bug:
+            // https://discuss.gradle.org/t/passing-arguments-to-compiler-and-javadoc/1661
+            options.addStringOption('Xdoclint:none,-missing', '-quiet')
+        }
     }
 }
 
