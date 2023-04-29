@@ -1,4 +1,4 @@
-package com.forgestorm.autotile.demo.html.gwt;
+package com.forgestorm.autotile.demo.gwt;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;

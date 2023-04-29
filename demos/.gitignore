@@ -2,17 +2,17 @@
 .gradle/
 gradle-app.setting
 /build/
-/autotile/build/
-/demos/android/build/
-/demos/core/build/
-/demos/lwjgl2/build/
-/demos/lwjgl3/build/
-/demos/html/build/
-/demos/ios/build/
-/demos/ios-moe/build/
-/demos/headless/build/
-/demos/server/build/
-/demos/shared/build/
+/android/build/
+/core/build/
+/lwjgl2/build/
+/lwjgl3/build/
+/html/build/
+/teavm/build/
+/ios/build/
+/ios-moe/build/
+/headless/build/
+/server/build/
+/shared/build/
 
 ## Java:
 *.class
@@ -53,6 +53,9 @@ gwt-unitCache/
 www-test/
 .gwt-tmp/
 
+## TeaVM:
+# Not sure yet...
+
 ## IntelliJ, Android Studio:
 .idea/
 *.ipr
@@ -68,6 +71,7 @@ www-test/
 /lwjgl2/bin/
 /lwjgl3/bin/
 /html/bin/
+/teavm/bin/
 /ios/bin/
 /ios-moe/bin/
 /headless/bin/
@@ -91,6 +95,7 @@ www-test/
 /lwjgl2/nbproject/private/
 /lwjgl3/nbproject/private/
 /html/nbproject/private/
+/teavm/nbproject/private/
 /ios/nbproject/private/
 /ios-moe/nbproject/private/
 /headless/nbproject/private/
@@ -103,6 +108,7 @@ www-test/
 /lwjgl2/nbbuild/
 /lwjgl3/nbbuild/
 /html/nbbuild/
+/teavm/nbbuild/
 /ios/nbbuild/
 /ios-moe/nbbuild/
 /headless/nbbuild/
@@ -115,6 +121,7 @@ www-test/
 /lwjgl2/dist/
 /lwjgl3/dist/
 /html/dist/
+/teavm/dist/
 /ios/dist/
 /ios-moe/dist/
 /headless/dist/
@@ -127,6 +134,7 @@ www-test/
 /lwjgl2/nbdist/
 /lwjgl3/nbdist/
 /html/nbdist/
+/teavm/nbdist/
 /ios/nbdist/
 /ios-moe/nbdist/
 /headless/nbdist/
@@ -144,6 +152,3 @@ Thumbs.db
 *~
 *.*#
 *#*#
-
-# Project exclude paths
-/tools/build/
