@@ -14,20 +14,18 @@ You may need to install a plugin in your IDE to use it properly.
 ![Program-Preview01](program-preview01.gif)
 ![Program-Preview02](program-preview02.png)
 
-## Major TODOS:
-- Fix the HTML demo
-- Implement brush sizes
-- Finish the tile-editor
-
 ## Clone to test the demo!
-The demo was created with [libGDX]. 
+**Try the [HTML Demo]** or clone the project to test the desktop demo. Check out the [Demo Source] code. The demo was created with [libGDX].
 
 Demo Controls:
 - Left-Click to drawl a tile
 - Right-Click to remove a tile
 
-## Usage
+## Major TODOS:
+- Implement brush sizes
+- Finish the tile-editor
 
+## Usage
 ```xml
 <repositories>
     <repository>
@@ -56,3 +54,5 @@ This project is licenced under the [Apache 2.0] license.
 [Sonny Bone]: <https://twitter.com/Phantom_Green>
 [Lombok]: <https://projectlombok.org/>
 [Apache 2.0]: <https://www.apache.org/licenses/LICENSE-2.0>
+[HTML Demo]: <https://unenergizer.github.io/JavaAutoTile/demo/>
+[Demo Source]: <https://github.com/unenergizer/JavaAutoTile/tree/master/demos/core/src/main/java/com/forgestorm/autotile/demo>
