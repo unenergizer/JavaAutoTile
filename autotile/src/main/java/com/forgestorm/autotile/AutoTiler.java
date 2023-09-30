@@ -72,6 +72,13 @@ public class AutoTiler {
     @Setter
     private boolean yUp = false;
 
+    /**
+     * The brush size for the auto tile.
+     */
+    @Getter
+    @Setter
+    private BrushType brushType = BrushType.SINGLE;
+
     public AutoTiler(TileGetterSetter tileGetterSetter) {
         this.tileGetterSetter = tileGetterSetter;
         this.bitmask4Bit = new Bitmask4Bit(this);
@@ -94,6 +101,21 @@ public class AutoTiler {
         // Strip the image id from the tile name. Good for tile comparisons.
         String strippedTileName = stripImageId(tileName);
 
+        // Set each tile for the brush.
+        for (BrushType.BrushTileInfo brushTileInfo : brushType.getBrushTileInfo()) {
+            tileGetterSetter.setTile(strippedTileName + brushTileInfo.getTileId(), x + brushTileInfo.getAddX(), y + brushTileInfo.getAddY());
+        }
+
+        // Now auto tile around these tiles
+        for (BrushType.BrushTileInfo brushTileInfo : brushType.getBrushTileInfo()) {
+            performAutoTile(bitmaskingType, strippedTileName, x + brushTileInfo.getAddX(), y + brushTileInfo.getAddY());
+        }
+
+        return true;
+    }
+
+    private void performAutoTile(BitmaskingType bitmaskingType, String strippedTileName, int x, int y) {
+
         // If enabled, prepare neighbor tiles fix.
         prepareNeighborTilesFix(strippedTileName, x, y);
 
@@ -106,8 +128,6 @@ public class AutoTiler {
 
         // If enabled, do neighbor tiles fix.
         initNeighborTileFix(x, y);
-
-        return true;
     }
 
     /**
