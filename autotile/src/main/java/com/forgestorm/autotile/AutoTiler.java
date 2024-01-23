@@ -79,6 +79,19 @@ public class AutoTiler {
     @Setter
     private BrushType brushType = BrushType.SINGLE;
 
+    /**
+     * Let the developer choose the tile prefix for their own tileset.
+     */
+    @Getter
+    @Setter
+    private String prefixType4 = BitmaskingType.TYPE_4.getPrefix();
+    /**
+     * Let the developer choose the tile prefix for their own tileset.
+     */
+    @Getter
+    @Setter
+    private String prefixType8 = BitmaskingType.TYPE_8.getPrefix();
+
     public AutoTiler(TileGetterSetter tileGetterSetter) {
         this.tileGetterSetter = tileGetterSetter;
         this.bitmask4Bit = new Bitmask4Bit(this);
@@ -95,7 +108,7 @@ public class AutoTiler {
      */
     public boolean autoTile(String tileName, int x, int y) {
         // Detect the type of bitmask tile we are working with.
-        BitmaskingType bitmaskingType = BitmaskingType.detectBitmaskingType(tileName);
+        BitmaskingType bitmaskingType = detectBitmaskingType(tileName);
         if (bitmaskingType == null) return false; // Type not detected
 
         // Strip the image id from the tile name. Good for tile comparisons.
@@ -222,7 +235,7 @@ public class AutoTiler {
             String strippedNeighborName = stripImageId(neighborName);
 
             // Detect bitmasking type for this tile
-            BitmaskingType bitmaskingType = BitmaskingType.detectBitmaskingType(strippedNeighborName);
+            BitmaskingType bitmaskingType = detectBitmaskingType(strippedNeighborName);
             if (bitmaskingType == null) return; // Type not detected
 
             // Apply bitmasking operations
@@ -272,5 +285,17 @@ public class AutoTiler {
      */
     public String stripImageId(String textureName) {
         return textureName.replaceAll("\\d*$", "");
+    }
+
+    /**
+     * Detects if the supplied texture name is a wang tile.
+     *
+     * @param textureName The name of the texture to check.
+     * @return Returns the {@link BitmaskingType} if it is detected.
+     */
+    private BitmaskingType detectBitmaskingType(String textureName) {
+        if (textureName.startsWith(prefixType4)) return BitmaskingType.TYPE_4;
+        if (textureName.startsWith(prefixType8)) return BitmaskingType.TYPE_8;
+        return null;
     }
 }

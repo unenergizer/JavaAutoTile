@@ -23,17 +23,4 @@ public enum BitmaskingType {
      * The default tile image ID used at the end of a texture name. This ID is used to initiate drawing of a wang tile.
      */
     private final String defaultTileImageId;
-
-    /**
-     * Detects if the supplied texture name is a wang tile.
-     *
-     * @param textureName The name of the texture to check.
-     * @return Returns the {@link BitmaskingType} if it is detected.
-     */
-    public static BitmaskingType detectBitmaskingType(String textureName) {
-        for (BitmaskingType BitmaskingType : values()) {
-            if (textureName.startsWith(BitmaskingType.getPrefix())) return BitmaskingType;
-        }
-        return null;
-    }
 }
